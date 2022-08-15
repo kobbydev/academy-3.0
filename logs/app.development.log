@@ -14,3 +14,6 @@
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [15/Aug/2022:11:57:17 +0000] \"GET /api/v1/auth HTTP/1.1\" 200 12 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-15T11:57:17.110Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-15T11:57:42.514Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [15/Aug/2022:11:57:50 +0000] \"GET /api/v1/user HTTP/1.1\" 200 29 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-15T11:57:50.914Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-15T12:23:08.349Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [15/Aug/2022:12:23:12 +0000] \"GET /api/v1/user HTTP/1.1\" 200 29 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-15T12:23:12.738Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-15T12:23:25.807Z"}
