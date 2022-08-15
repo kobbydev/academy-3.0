@@ -1,14 +1,12 @@
 import { helpers, genericErrors, ApiError, constants } from '../../utils';
 import config from '../../../config/env';
+import { User } from '../../models/User';
 
 const {
   GenericHelper: { errorResponse, moduleErrLogMessager },
   AuthHelper: { verifyToken, compareHash }
 } = helpers;
-const {
-  RESOURCE_EXIST_VERIFICATION_FAIL,
-  RESOURCE_EXIST_VERIFICATION_FAIL_MSG
-} = constants;
+const { RESOURCE_EXIST_VERIFICATION_FAIL, RESOURCE_EXIST_VERIFICATION_FAIL_MSG } = constants;
 const { SECRET, REFRESH_SECRET } = config;
 
 /**
@@ -46,11 +44,7 @@ class AuthMiddleware {
    */
   static comparePassword(req, res, next) {
     const { user, body } = req;
-    const isAuthenticUser = compareHash(
-      body.password,
-      user.password,
-      user.salt
-    );
+    const isAuthenticUser = compareHash(body.password, user.password, user.salt);
     if (!isAuthenticUser) {
       return errorResponse(req, res, genericErrors.inValidLogin);
     }
@@ -72,10 +66,7 @@ class AuthMiddleware {
     const bearerToken = AuthMiddleware.checkAuthorizationToken(authorization);
     return req.body.refreshToken
       ? req.body.refreshToken
-      : bearerToken
-          || req.headers['x-access-token']
-          || req.headers.token
-          || req.body.token;
+      : bearerToken || req.headers['x-access-token'] || req.headers.token || req.body.token;
   }
 
   /**
@@ -107,10 +98,8 @@ class AuthMiddleware {
   static async loginEmailValidator(req, res, next) {
     try {
       req.body = { ...req.body, ...req.data };
-      req.user = await (req.body.email);
-      return req.user
-        ? next()
-        : errorResponse(req, res, genericErrors.inValidLogin);
+      req.user = await User.findOne({ emailAddress: req.body.emailAddress });
+      return req.user ? next() : errorResponse(req, res, genericErrors.inValidLogin);
     } catch (e) {
       e.status = RESOURCE_EXIST_VERIFICATION_FAIL('ADMIN');
       moduleErrLogMessager(e);

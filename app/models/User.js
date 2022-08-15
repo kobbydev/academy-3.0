@@ -8,7 +8,8 @@ const userSchema = new Schema(
     lastName: { type: String, require: true },
     emailAddress: { type: String, require: true },
     phoneNumber: { type: String, require: true },
-    password: { type: String, require: true }
+    password: { type: String, require: true },
+    salt: { type: String }
   },
   { timestamps: true }
 );
