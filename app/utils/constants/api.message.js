@@ -19,6 +19,7 @@ export default {
   INVALID_CREDENTIALS: 'Incorrect login details',
   ROLE_NOT_SUFFICIENT: 'Role not sufficient to perform action',
   LOGIN_USER_SUCCESSFULLY: 'User logged in successfully',
+  USER_ALREADY_EXISTS: 'Email is already taken. Please login or signup with a different email.',
   RESOURCE_DELETE_SUCCESS: (resource) => `${resource} deleted successfully`,
   RESOURCE_DELETE_FAIL: (resource) => `Error while deleting ${resource}`,
   RESOURCE_DELETE_FAIL_STATUS: (resource) => `ERROR DELETING ${resource}`,
