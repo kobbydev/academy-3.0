@@ -1,6 +1,7 @@
 import { helpers, genericErrors, ApiError, constants } from '../../utils';
 import config from '../../../config/env';
 import { User } from '../../models/User';
+// import { Admin } from '../../models/Admin';
 
 const {
   GenericHelper: { errorResponse, moduleErrLogMessager },

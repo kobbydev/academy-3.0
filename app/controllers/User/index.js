@@ -8,7 +8,7 @@ export const userSignUp = async (req, res) => {
   const { password, ...body } = req.body;
   const { salt, hash } = AuthHelper.hashString(password);
   try {
-    const newUser = await User.create({ ...body, password: hash, salt, role: 'User' });
+    const newUser = await User.create({ ...body, password: hash, salt, role: 'User', is_admin: false });
     return res.status(201).send({
       message: constants.SUCCESS_RESPONSE,
       data: newUser

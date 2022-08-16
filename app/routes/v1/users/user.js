@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { joiForUser, joiForLogin } from '../../../middlewares/validation/user';
-import { ValidationMiddleware, AuthMiddleware } from '../../../middlewares';
+import { ValidationMiddleware, AuthMiddleware, RoleMiddleware } from '../../../middlewares';
 import { userSignUp, userLogIn } from '../../../controllers/User';
 import { checkForUser } from '../../../middlewares/user';
 // import { AuthHelper } from '../../../utils/helpers';
@@ -8,7 +8,7 @@ import { checkForUser } from '../../../middlewares/user';
 const router = Router();
 const { validate } = ValidationMiddleware;
 const { loginEmailValidator, comparePassword } = AuthMiddleware;
-// const { roleValueValidator } = RoleMiddleware;
+const { roleValueValidator } = RoleMiddleware;
 
 router.post('/user-signup', validate(joiForUser), checkForUser, userSignUp);
 router.post(
@@ -16,7 +16,7 @@ router.post(
   validate(joiForLogin),
   loginEmailValidator,
   comparePassword,
-  // generateToken,
+  roleValueValidator,
   userLogIn
 );
 
