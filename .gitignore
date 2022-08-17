@@ -1,8 +1,5 @@
 node_modules/
-<<<<<<< HEAD
-=======
 coverage/
->>>>>>> Malcolm
 .nyc_output/
 coverage/
 logs/
