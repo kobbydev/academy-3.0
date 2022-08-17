@@ -40,5 +40,6 @@ export default {
   RESOURCE_NOT_PROVIDED: (resource) => `No ${resource} provided`,
   RESOURCE_EXIST_VERIFICATION_FAIL_MSG: (resource) => `Error trying to fetch ${resource}. It is not you, it is us.`,
   EMAIL_WAS_NOT_SENT: 'Email could not be sent',
-  ROLE_ARRAY: ['User', 'Admin']
+  ROLE_ARRAY: ['User', 'Admin'],
+  NO_MATCHING_INFO: 'The information you have provided does not match what you signed up with!',
 };

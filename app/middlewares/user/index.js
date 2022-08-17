@@ -21,13 +21,23 @@ export const checkForUser = async (req, res, next) => {
     return ErrorFactory.resolveError(e);
   }
 };
-// export const userToken = async (req, res, next) => {
-//   try {
-//     const { _id, firstName, lastName, email } = req.user;
-//     const { token } = AuthHelper.addTokenToData({ _id, firstName, lastName, email });
-//     req.header('x-access-token') = token;
-//     next();
-//   } catch (e) {
-//     return ErrorFactory.resolveError(e);
-//   }
-// };
+
+// checks if the information provided by the user matches what he/she signed up with
+export const applicationValidator = async (req, res, next) => {
+  try {
+    if (
+      req.data.firstName === req.body.firstName &&
+      req.data.lastName === req.body.lastName &&
+      req.data.emailAddress === req.body.emailAddress
+    ) {
+      next();
+    } else {
+      return res.status(400).send({
+        message: constants.NO_MATCHING_INFO,
+        data: null
+      });
+    }
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
