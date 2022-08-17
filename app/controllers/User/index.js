@@ -45,8 +45,6 @@ export const userLogIn = async (req, res) => {
 export const createUserApplication = async (req, res) => {
   try {
     const { body } = req;
-    // eslint-disable-next-line no-console
-    console.log(req.body);
     const newApplication = await userApplication.create(body);
     return res.status(201).send({
       message: constants.SUCCESS_RESPONSE,
