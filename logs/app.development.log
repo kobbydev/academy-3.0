@@ -654,3 +654,5 @@
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [17/Aug/2022:16:24:45 +0000] \"POST /api/v1/application HTTP/1.1\" 201 362 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-17T16:24:45.875Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-17T16:39:27.349Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [17/Aug/2022:16:39:31 +0000] \"POST /api/v1/application HTTP/1.1\" 201 362 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-17T16:39:31.347Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-17T16:40:04.402Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [17/Aug/2022:16:40:07 +0000] \"POST /api/v1/application HTTP/1.1\" 201 362 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-17T16:40:07.383Z"}
