@@ -3,7 +3,6 @@ import { joiForUser, joiForLogin } from '../../../middlewares/validation/user';
 import { ValidationMiddleware, AuthMiddleware, RoleMiddleware } from '../../../middlewares';
 import { userSignUp, userLogIn } from '../../../controllers/User';
 import { checkForUser } from '../../../middlewares/user';
-// import { AuthHelper } from '../../../utils/helpers';
 
 const router = Router();
 const { validate } = ValidationMiddleware;
