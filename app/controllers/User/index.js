@@ -15,9 +15,10 @@ export const userSignUp = async (req, res) => {
       role: 'User',
       is_admin: false
     });
+    const { _id, firstName, lastName } = newUser;
     return res.status(201).send({
-      message: constants.SUCCESS_RESPONSE,
-      data: newUser
+      message: constants.RESOURCE_CREATE_SUCCESS('User'),
+      data: { user: { _id, firstName, lastName } }
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);
@@ -33,8 +34,8 @@ export const userLogIn = async (req, res) => {
       .header('x-access-token', token)
       .status(200)
       .send({
-        message: constants.SUCCESS_RESPONSE,
-        data: { user: req.user }
+        message: constants.RESOURCE_LOGIN_SUCCESSFUL('User'),
+        data: { user: { _id, firstName, lastName } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);
@@ -47,7 +48,7 @@ export const createUserApplication = async (req, res) => {
     const { body } = req;
     const newApplication = await userApplication.create(body);
     return res.status(201).send({
-      message: constants.SUCCESS_RESPONSE,
+      message: constants.RESOURCE_CREATE_SUCCESS('Application'),
       data: newApplication
     });
   } catch (e) {

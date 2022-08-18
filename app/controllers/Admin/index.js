@@ -11,8 +11,8 @@ export const adminLogIn = async (req, res) => {
       .header('x-access-token', token)
       .status(200)
       .send({
-        message: constants.SUCCESS_RESPONSE,
-        data: { admin: req.user }
+        message: constants.RESOURCE_LOGIN_SUCCESSFUL('Admin'),
+        data: { admin: { _id, firstName, lastName } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);
