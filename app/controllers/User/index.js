@@ -2,6 +2,7 @@
 import { User, userApplication } from '../../models/User';
 import { AuthHelper, ErrorFactory } from '../../utils/helpers';
 import { constants } from '../../utils';
+import cloudinary from '../../utils/cloudinary';
 
 // SignsUp a user
 export const userSignUp = async (req, res) => {
@@ -45,8 +46,15 @@ export const userLogIn = async (req, res) => {
 // creates an application
 export const createUserApplication = async (req, res) => {
   try {
+    const { image, cv } = req.files;
+    const imageResult = await cloudinary.uploader.upload(image.tempFilePath);
+    const cvResult = await cloudinary.uploader.upload(cv.tempFilePath);
     const { body } = req;
-    const newApplication = await userApplication.create(body);
+    const newApplication = await userApplication.create({
+      ...body,
+      cv: cvResult.url,
+      image: imageResult.url
+    });
     return res.status(201).send({
       message: constants.RESOURCE_CREATE_SUCCESS('Application'),
       data: newApplication
