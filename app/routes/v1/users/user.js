@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { Router } from 'express';
-import multer from 'multer';
 import { joiForUser, joiForLogin, joirForApplication } from '../../../middlewares/validation/user';
 import { ValidationMiddleware, AuthMiddleware, RoleMiddleware } from '../../../middlewares';
 import { userSignUp, userLogIn, createUserApplication } from '../../../controllers/User';
 import { checkForUser, applicationValidator } from '../../../middlewares/user';
+// import multerFile from '../../../utils/multer';
 
 const router = Router();
 // eslint-disable-next-line no-unused-vars
 const { validate } = ValidationMiddleware;
 const { loginEmailValidator, comparePassword, authenticate } = AuthMiddleware;
 const { roleValueValidator } = RoleMiddleware;
-const fileUpload = multer({ dest: 'uploads/' });
-const uplaod = fileUpload.fields([{ name: 'image' }, { name: 'cv' }]);
+
+// const fileUpload = multer({ dest: 'uploads/' });
+// const upload = multerFile.fields([{ name: 'image' }, { name: 'cv' }]);
+// const upload = multerFile.single('image');
 
 // router for user signup
 router.post('/user-signup', validate(joiForUser), checkForUser, userSignUp);
@@ -35,6 +37,4 @@ router.post(
   applicationValidator,
   createUserApplication
 );
-
-// router to get the details of a user
-// router.get('/user-details', authenticate);
+export default router;

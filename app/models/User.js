@@ -25,13 +25,13 @@ const applicationSchema = new Schema(
     firstName: { type: String, require: true },
     lastName: { type: String, require: true },
     emailAddress: { type: String, require: true },
-    dateOfBirth: { type: Date, require: true },
+    dateOfBirth: { type: Date },
     address: { type: String, require: true },
     university: { type: String, require: true },
     courseOfStudy: { type: String, require: true },
     cgpa: { type: Number, require: true },
-    // image: { type: Buffer },
-    // cv: { type: Buffer }
+    image: { type: String },
+    cv: { type: String }
   },
   { timestamps: true }
 );
