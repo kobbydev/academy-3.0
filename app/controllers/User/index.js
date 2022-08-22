@@ -65,8 +65,15 @@ export const createUserApplication = async (req, res) => {
 };
 
 // fetches a user's information
-// export const getUserInfo = async (req, res) => {
-//   try {
-//     const {firstName, lastName, }
-//   }
-// }
+export const getUserInfo = async (req, res) => {
+  try {
+    const userInfo = await userApplication.findOne({ emailAddress: req.data.emailAddress });
+    const { firstName, lastName, emailAddress, image } = userInfo;
+    return res.status(200).send({
+      message: constants.RESOURCE_FETCH_SUCCESS('UserInfo'),
+      data: { user: { firstName, lastName, emailAddress, image } }
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};

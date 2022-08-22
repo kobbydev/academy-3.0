@@ -2,7 +2,12 @@
 import { Router } from 'express';
 import { joiForUser, joiForLogin, joirForApplication } from '../../../middlewares/validation/user';
 import { ValidationMiddleware, AuthMiddleware, RoleMiddleware } from '../../../middlewares';
-import { userSignUp, userLogIn, createUserApplication } from '../../../controllers/User';
+import {
+  userSignUp,
+  userLogIn,
+  createUserApplication,
+  getUserInfo
+} from '../../../controllers/User';
 import { checkForUser, applicationValidator } from '../../../middlewares/user';
 // import multerFile from '../../../utils/multer';
 
@@ -38,3 +43,6 @@ router.post(
   createUserApplication
 );
 export default router;
+
+// router to fetch a user's info
+router.get('/userInfo', authenticate, getUserInfo);

@@ -770,3 +770,25 @@
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [19/Aug/2022:12:40:01 +0000] \"POST /api/v1/application HTTP/1.1\" 201 546 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-19T12:40:01.231Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-19T12:54:00.439Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-19T12:54:35.155Z"}
+{"label":"TEMPORAL_PROJECT","level":"error","message":"bad auth : Authentication failed.","timestamp":"2022-08-22T11:55:12.566Z"}
+{"label":"TEMPORAL_PROJECT","level":"error","message":"bad auth : Authentication failed.","timestamp":"2022-08-22T11:57:41.796Z"}
+{"label":"TEMPORAL_PROJECT","level":"error","message":"bad auth : Authentication failed.","timestamp":"2022-08-22T11:57:54.365Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:00:28.699Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:01:18.577Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:01:26.956Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:01:34.142Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:01:44 +0000] \"POST /api/v1/user-login HTTP/1.1\" 200 133 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:01:44.402Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:02:47 +0000] \"POST /api/v1/user-login HTTP/1.1\" 200 130 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:02:47.622Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:03:55 +0000] \"POST /api/v1/application HTTP/1.1\" - - \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:03:55.518Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:08:17 +0000] \"POST /api/v1/application HTTP/1.1\" - - \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:08:17.785Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:14:31 +0000] \"POST /api/v1/application HTTP/1.1\" - - \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:14:31.563Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:16:05 +0000] \"POST /api/v1/application HTTP/1.1\" 201 542 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:16:05.465Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:21:25.347Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:32:27.813Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:34:24 +0000] \"GET /api/v1/userInfo HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:34:24.491Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:41:58.601Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:42:21 +0000] \"GET /api/v1/userInfo HTTP/1.1\" 200 539 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:42:21.640Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:43:23.241Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:43:31 +0000] \"GET /api/v1/userInfo HTTP/1.1\" 200 539 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:43:31.364Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8081","timestamp":"2022-08-22T12:44:31.393Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [22/Aug/2022:12:44:34 +0000] \"GET /api/v1/userInfo HTTP/1.1\" 200 225 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-22T12:44:34.282Z"}
