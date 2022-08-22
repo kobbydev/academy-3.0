@@ -55,3 +55,10 @@ export const createUserApplication = async (req, res) => {
     return ErrorFactory.resolveError(e);
   }
 };
+
+// fetches a user's information
+// export const getUserInfo = async (req, res) => {
+//   try {
+//     const {firstName, lastName, }
+//   }
+// }

@@ -28,5 +28,13 @@ router.post(
 );
 
 // router for user to create an application
-router.post('/application', validate(joirForApplication), authenticate, applicationValidator, createUserApplication);
-export default router;
+router.post(
+  '/application',
+  validate(joirForApplication),
+  authenticate,
+  applicationValidator,
+  createUserApplication
+);
+
+// router to get the details of a user
+// router.get('/user-details', authenticate);
