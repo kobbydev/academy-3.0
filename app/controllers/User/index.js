@@ -14,7 +14,8 @@ export const userSignUp = async (req, res) => {
       password: hash,
       salt,
       role: 'User',
-      is_admin: false
+      is_admin: false,
+      is_applied: false
     });
     const { _id, firstName, lastName } = newUser;
     return res.status(201).send({
@@ -50,11 +51,14 @@ export const createUserApplication = async (req, res) => {
     const imageResult = await cloudinary.uploader.upload(image.tempFilePath);
     const cvResult = await cloudinary.uploader.upload(cv.tempFilePath);
     const { body } = req;
+    const { _id } = req.data;
     const newApplication = await userApplication.create({
       ...body,
       cv: cvResult.url,
-      image: imageResult.url
+      image: imageResult.url,
+      app_status: 'Pending'
     });
+    await User.findByIdAndUpdate(_id, { is_applied: true });
     return res.status(201).send({
       message: constants.RESOURCE_CREATE_SUCCESS('Application'),
       data: newApplication
@@ -68,10 +72,10 @@ export const createUserApplication = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userInfo = await userApplication.findOne({ emailAddress: req.data.emailAddress });
-    const { firstName, lastName, emailAddress, image } = userInfo;
+    const { firstName, lastName, emailAddress, image, createdAt } = userInfo;
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('UserInfo'),
-      data: { user: { firstName, lastName, emailAddress, image } }
+      data: { user: { firstName, lastName, emailAddress, image, createdAt } }
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);

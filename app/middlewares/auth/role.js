@@ -48,6 +48,10 @@ class RoleMiddleware {
     return req.user.is_admin ? next() : errorResponse(req, res, genericErrors.unAuthorized);
   }
 
+  static adminAccess(req, res, next) {
+    return req.data.is_admin ? next() : errorResponse(req, res, genericErrors.unAuthorized);
+  }
+
   /**
    * Verifies that user has the required role access for the resource.
    * @static

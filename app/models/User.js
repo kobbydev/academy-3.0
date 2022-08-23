@@ -12,7 +12,8 @@ const userSchema = new Schema(
     password: { type: String, require: true },
     salt: { type: String },
     role: { type: String },
-    is_admin: { type: Boolean }
+    is_admin: { type: Boolean },
+    is_applied: { type: Boolean }
   },
   { timestamps: true }
 );
@@ -31,7 +32,8 @@ const applicationSchema = new Schema(
     courseOfStudy: { type: String, require: true },
     cgpa: { type: Number, require: true },
     image: { type: String },
-    cv: { type: String }
+    cv: { type: String },
+    app_status: { type: String }
   },
   { timestamps: true }
 );
