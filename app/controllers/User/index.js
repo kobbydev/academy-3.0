@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { User, userApplication } from '../../models/User';
 import { AuthHelper, ErrorFactory } from '../../utils/helpers';
 import { constants } from '../../utils';
