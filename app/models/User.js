@@ -18,7 +18,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-// eslint-disable-next-line import/prefer-default-export
 export const User = model('User', userSchema);
 
 const applicationSchema = new Schema(
@@ -31,12 +30,11 @@ const applicationSchema = new Schema(
     university: { type: String, require: true },
     courseOfStudy: { type: String, require: true },
     cgpa: { type: Number, require: true },
-    image: { type: String },
-    cv: { type: String },
+    image: { type: String, require: true },
+    cv: { type: String, require: true },
     app_status: { type: String }
   },
   { timestamps: true }
 );
 
-// eslint-disable-next-line import/prefer-default-export
 export const userApplication = model('userApplication', applicationSchema);

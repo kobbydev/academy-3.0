@@ -6,8 +6,8 @@ export const joiForUser = Joi.object({
   lastName: Joi.string().required(),
   emailAddress: Joi.string().email().required(),
   phoneNumber: Joi.number().required(),
-  password: Joi.string().min(8).required()
-  // confirmPassword: Joi.ref('password')
+  password: Joi.string().min(8).required(),
+  confirmPassword: Joi.ref('password')
 });
 
 export const joiForLogin = Joi.object({
@@ -15,7 +15,7 @@ export const joiForLogin = Joi.object({
   password: Joi.string().min(8).required()
 });
 
-export const joirForApplication = Joi.object({
+export const joiForApplication = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   emailAddress: Joi.string().email().required(),
@@ -25,4 +25,12 @@ export const joirForApplication = Joi.object({
   courseOfStudy: Joi.string().required(),
   cgpa: Joi.number().max(4).min(1).required()
   // image: Joi.string().required()
+});
+
+export const joiForAdminApplication = Joi.object({
+  // applicationFile: Joi.any().required(),
+  link: Joi.string(),
+  dateOfApplication: Joi.date().required(),
+  batchId: Joi.string().required(),
+  instructions: Joi.string()
 });
