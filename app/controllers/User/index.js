@@ -36,7 +36,7 @@ export const userLogIn = async (req, res) => {
       .status(200)
       .send({
         message: constants.RESOURCE_LOGIN_SUCCESSFUL('User'),
-        data: { user: { _id, firstName, lastName } }
+        data: { user: { _id, firstName, lastName, token } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);
