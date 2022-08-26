@@ -29,14 +29,14 @@ export const userSignUp = async (req, res) => {
 // Logs a user in
 export const userLogIn = async (req, res) => {
   try {
-    const { _id, firstName, lastName, emailAddress, role } = req.user;
+    const { _id, firstName, lastName, emailAddress, role, is_applied } = req.user;
     const { token } = AuthHelper.addTokenToData({ _id, firstName, lastName, emailAddress });
     return res
       .header('x-access-token', token)
       .status(200)
       .send({
         message: constants.RESOURCE_LOGIN_SUCCESSFUL('User'),
-        data: { user: { _id, firstName, lastName, role, token } }
+        data: { user: { _id, firstName, lastName, role, is_applied, token } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);
