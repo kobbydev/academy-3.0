@@ -1,7 +1,7 @@
 import { AuthHelper, ErrorFactory } from '../../utils/helpers';
 import { constants } from '../../utils';
 import { userApplication } from '../../models/User';
-import adminApplication from '../../models/Admin';
+import { adminApplication, createAssessment } from '../../models/Admin';
 import cloudinary from '../../utils/cloudinary';
 
 // Logs a user in
@@ -66,6 +66,25 @@ export const getAllAdminApplications = async (req, res) => {
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('Applications'),
       data: applications
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
+
+// To create Assessment
+export const createAdminAssessment = async (req, res) => {
+  try {
+    const { assessmentFile } = req.files;
+    const assessmentFileResult = await cloudinary.uploader.upload(assessmentFile.tempFilePath);
+    const { body } = req;
+    const newAssessment = await createAssessment.create({
+      ...body,
+      assessmentFile: assessmentFileResult.url
+    });
+    return res.status(201).send({
+      message: constants.RESOURCE_CREATE_SUCCESS('Assessment'),
+      data: newAssessment
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);

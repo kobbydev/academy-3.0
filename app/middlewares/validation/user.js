@@ -16,16 +16,16 @@ export const joiForLogin = Joi.object({
 });
 
 export const joiForApplication = Joi.object({
-  firstName: Joi.string(),
-  lastName: Joi.string(),
-  emailAddress: Joi.string().email(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  emailAddress: Joi.string().email().required(),
   dateOfBirth: Joi.date(),
-  address: Joi.string(),
-  university: Joi.string(),
-  courseOfStudy: Joi.string(),
-  cgpa: Joi.number().max(4).min(1),
-  image: Joi.any(),
-  cv: Joi.any()
+  address: Joi.string().required(),
+  university: Joi.string().required(),
+  courseOfStudy: Joi.string().required(),
+  cgpa: Joi.number().max(4).min(1).required(),
+  image: Joi.any().required(),
+  cv: Joi.any().required()
 });
 
 export const joiForAdminApplication = Joi.object({
@@ -34,4 +34,13 @@ export const joiForAdminApplication = Joi.object({
   dateOfApplication: Joi.date().required(),
   batchId: Joi.string().required(),
   instructions: Joi.string()
+});
+
+export const joiForCreateAssesment = Joi.object({
+  assessmentFile: Joi.any(),
+  questions: Joi.string().required(),
+  optionA: Joi.string().required(),
+  optionB: Joi.string().required(),
+  optionC: Joi.string().required(),
+  optionD: Joi.string().required()
 });
