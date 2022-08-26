@@ -7,7 +7,7 @@ import cloudinary from '../../utils/cloudinary';
 // Logs a user in
 export const adminLogIn = async (req, res) => {
   try {
-    const { _id, firstName, lastName, emailAddress, is_admin } = req.user;
+    const { _id, firstName, lastName, emailAddress, is_admin, role } = req.user;
     const { token } = AuthHelper.addTokenToData({
       _id,
       firstName,
@@ -20,7 +20,7 @@ export const adminLogIn = async (req, res) => {
       .status(200)
       .send({
         message: constants.RESOURCE_LOGIN_SUCCESSFUL('Admin'),
-        data: { admin: { _id, firstName, lastName, emailAddress, is_admin } }
+        data: { admin: { _id, firstName, lastName, emailAddress, is_admin, role, token } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);

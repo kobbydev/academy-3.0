@@ -29,14 +29,14 @@ export const userSignUp = async (req, res) => {
 // Logs a user in
 export const userLogIn = async (req, res) => {
   try {
-    const { _id, firstName, lastName, emailAddress } = req.user;
+    const { _id, firstName, lastName, emailAddress, role } = req.user;
     const { token } = AuthHelper.addTokenToData({ _id, firstName, lastName, emailAddress });
     return res
       .header('x-access-token', token)
       .status(200)
       .send({
         message: constants.RESOURCE_LOGIN_SUCCESSFUL('User'),
-        data: { user: { _id, firstName, lastName, token } }
+        data: { user: { _id, firstName, lastName, role, token } }
       });
   } catch (e) {
     return ErrorFactory.resolveError(e);
@@ -71,10 +71,10 @@ export const createUserApplication = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userInfo = await userApplication.findOne({ emailAddress: req.data.emailAddress });
-    const { firstName, lastName, emailAddress, image, createdAt } = userInfo;
+    const { firstName, lastName, emailAddress, image, createdAt, app_status } = userInfo;
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('UserInfo'),
-      data: { user: { firstName, lastName, emailAddress, image, createdAt } }
+      data: { user: { firstName, lastName, emailAddress, image, createdAt, app_status } }
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);
