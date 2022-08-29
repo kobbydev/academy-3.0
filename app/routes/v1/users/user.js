@@ -5,7 +5,8 @@ import {
   userSignUp,
   userLogIn,
   createUserApplication,
-  getUserInfo
+  getUserInfo,
+  getSingleUser
 } from '../../../controllers/User';
 import { checkForUser, applicationValidator } from '../../../middlewares/user';
 
@@ -38,5 +39,7 @@ router.post(
 
 // router to fetch a user's info
 router.get('/userInfo', authenticate, getUserInfo);
+
+router.get('/applicant-info/:email', authenticate, getSingleUser);
 
 export default router;
