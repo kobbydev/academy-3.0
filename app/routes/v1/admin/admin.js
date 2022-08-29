@@ -1,28 +1,35 @@
 import { Router } from 'express';
+import { checkForAdmin } from '../../../middlewares/admin';
 import { ValidationMiddleware, AuthMiddleware, RoleMiddleware } from '../../../middlewares';
 import {
+  adminSignUp,
   adminLogIn,
   adminCreateApplication,
   createAdminAssessment,
   getAllUserInfo,
-  getAllAdminApplications
+  getAllAdminApplications,
+  updateAdminDetails
 } from '../../../controllers/Admin';
 import {
   joiForLogin,
   joiForAdminApplication,
-  joiForCreateAssesment
+  joiForCreateAssesment,
+  joiForAdminSignup
 } from '../../../middlewares/validation/user';
 
 const router = Router();
 const { validate } = ValidationMiddleware;
-const { loginEmailValidator, comparePassword, authenticate } = AuthMiddleware;
+const { loginAdminEmailValidator, comparePassword, authenticate } = AuthMiddleware;
 const { roleValueValidator, adminAccessValidator, adminAccess } = RoleMiddleware;
+
+// Creates an admin
+router.post('/admin/signup', validate(joiForAdminSignup), checkForAdmin, adminSignUp);
 
 // logins in an admin
 router.post(
   '/admin-login',
   validate(joiForLogin),
-  loginEmailValidator,
+  loginAdminEmailValidator,
   comparePassword,
   roleValueValidator,
   adminAccessValidator,
@@ -51,5 +58,8 @@ router.get('/admin-applications', authenticate, adminAccess, getAllAdminApplicat
 
 // Fetches all the applicants for the admin
 router.get('/admin/getApplicants', authenticate, adminAccess, getAllUserInfo);
+
+// Ruoter to update the details of an Admin
+router.patch('/admin/update-details', authenticate, adminAccess, updateAdminDetails);
 
 export default router;

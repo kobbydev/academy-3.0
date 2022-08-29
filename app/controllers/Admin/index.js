@@ -1,8 +1,33 @@
 import { AuthHelper, ErrorFactory } from '../../utils/helpers';
 import { constants } from '../../utils';
 import { userApplication } from '../../models/User';
-import { adminApplication, createAssessment } from '../../models/Admin';
+import { adminApplication, createAssessment, Admin } from '../../models/Admin';
 import cloudinary from '../../utils/cloudinary';
+
+// Creates an admin
+export const adminSignUp = async (req, res) => {
+  const { profileImage } = req.files;
+  const profileResult = await cloudinary.uploader.upload(profileImage.tempFilePath);
+  const { password, ...body } = req.body;
+  const { salt, hash } = AuthHelper.hashString(password);
+  try {
+    const newAdmin = await Admin.create({
+      ...body,
+      password: hash,
+      salt,
+      profileImage: profileResult.url,
+      role: 'Admin',
+      is_admin: true
+    });
+    const { _id, firstName, lastName } = newAdmin;
+    return res.status(201).send({
+      message: constants.RESOURCE_CREATE_SUCCESS('Admin'),
+      data: { admin: { _id, firstName, lastName } }
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
 
 // Logs a user in
 export const adminLogIn = async (req, res) => {
@@ -85,6 +110,32 @@ export const createAdminAssessment = async (req, res) => {
     return res.status(201).send({
       message: constants.RESOURCE_CREATE_SUCCESS('Assessment'),
       data: newAssessment
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
+
+// To update the details of an admin
+export const updateAdminDetails = async (req, res) => {
+  try {
+    const { _id } = req.data;
+    const { profileImage } = req.files;
+    const imageResult = await cloudinary.uploader.upload(profileImage.tempFilePath);
+    const { firstName, lastName, phoneNumber, address, country } = req.body;
+    // console.log(firstName);
+    const adminUpdate = await Admin.findById(_id);
+    const newadmin = await adminUpdate.update({
+      profileImage: imageResult.url,
+      firstName,
+      lastName,
+      phoneNumber,
+      address,
+      country
+    });
+    return res.status(201).send({
+      message: constants.RESOURCE_UPDATE_SUCCESS('Admin'),
+      data: newadmin
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);

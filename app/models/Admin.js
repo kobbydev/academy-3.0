@@ -2,8 +2,27 @@ import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
 
-// admin create application schema
+// Admin sign up schema
+const adminSchema = new Schema(
+  {
+    profileImage: { type: String },
+    firstName: { type: String, require: true },
+    lastName: { type: String, require: true },
+    emailAddress: { type: String, require: true },
+    phoneNumber: { type: String, require: true },
+    password: { type: String, require: true },
+    salt: { type: String },
+    role: { type: String },
+    is_admin: { type: Boolean },
+    country: { type: String, require: true },
+    address: { type: String, require: true }
+  },
+  { timestamps: true }
+);
 
+export const Admin = model('Admin', adminSchema);
+
+// admin create application schema
 const adminApplicationsSchema = new Schema(
   {
     link: { type: String, require: true },

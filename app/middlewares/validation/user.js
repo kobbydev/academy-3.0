@@ -10,6 +10,18 @@ export const joiForUser = Joi.object({
   confirmPassword: Joi.ref('password')
 });
 
+export const joiForAdminSignup = Joi.object({
+  profileImage: Joi.any(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  emailAddress: Joi.string().email().required(),
+  phoneNumber: Joi.number().required(),
+  password: Joi.string().min(8).required(),
+  confirmPassword: Joi.ref('password'),
+  country: Joi.string().required(),
+  address: Joi.string().required()
+});
+
 export const joiForLogin = Joi.object({
   emailAddress: Joi.string().email().required(),
   password: Joi.string().min(8).required()
