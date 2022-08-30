@@ -6673,3 +6673,13 @@
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-29T22:53:44.154Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [29/Aug/2022:22:55:38 +0000] \"PATCH /api/v1/admin/update-details HTTP/1.1\" 201 140 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-29T22:55:38.570Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [29/Aug/2022:22:56:19 +0000] \"PATCH /api/v1/admin/update-details HTTP/1.1\" 201 140 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-29T22:56:19.606Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:16:09.561Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:16:14 +0000] \"POST /api/v1/admin-login HTTP/1.1\" 200 507 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:16:14.254Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:18:37 +0000] \"POST /api/v1/admin/create-assessment HTTP/1.1\" - - \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:18:37.953Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:20:20.747Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:20:30.983Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:21:46 +0000] \"POST /api/v1/admin/create-assessment HTTP/1.1\" 201 318 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:21:46.807Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:31:19.759Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:32:58 +0000] \"GET /api/v1/admin/info HTTP/1.1\" 200 561 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:32:58.819Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:36:33.097Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:36:37 +0000] \"GET /api/v1/admin/info HTTP/1.1\" 200 304 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:36:37.942Z"}

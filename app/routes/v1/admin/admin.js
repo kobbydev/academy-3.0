@@ -9,7 +9,8 @@ import {
   getAllUserInfo,
   getAllAdminApplications,
   updateAdminDetails,
-  approveUser
+  approveUser,
+  getAdminInfo
 } from '../../../controllers/Admin';
 import {
   joiForLogin,
@@ -56,6 +57,9 @@ router.post(
 
 // Router to get admin applications
 router.get('/admin-applications', authenticate, adminAccess, getAllAdminApplications);
+
+// Router to get admin info
+router.get('/admin/info', authenticate, adminAccess, getAdminInfo);
 
 // Fetches all the applicants for the admin
 router.get('/admin/getApplicants', authenticate, adminAccess, getAllUserInfo);

@@ -52,6 +52,24 @@ export const adminLogIn = async (req, res) => {
   }
 };
 
+// Gets the admin Info
+export const getAdminInfo = async (req, res) => {
+  try {
+    const { _id } = req.data;
+    const adminInfo = await Admin.findById(_id);
+    const { firstName, lastName, emailAddress, profileImage, country, address, phoneNumber } =
+      adminInfo;
+    return res.status(200).send({
+      message: constants.RESOURCE_FETCH_SUCCESS('Admin Info'),
+      data: {
+        admin: { firstName, lastName, emailAddress, profileImage, country, address, phoneNumber }
+      }
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
+
 // Get all Applicants info
 export const getAllUserInfo = async (req, res) => {
   try {
@@ -107,6 +125,8 @@ export const createAdminAssessment = async (req, res) => {
       ...body,
       assessmentFile: assessmentFileResult.url
     });
+    // eslint-disable-next-line no-console
+    console.log('I got here');
     return res.status(201).send({
       message: constants.RESOURCE_CREATE_SUCCESS('Assessment'),
       data: newAssessment
