@@ -84,7 +84,7 @@ export const getUserInfo = async (req, res) => {
 // get user info with param
 export const getSingleUser = async (req, res) => {
   try {
-    const singleUser = await userApplication.findOne({ emailAddress: req.params.email });
+    const singleUser = await userApplication.findOne({ _id: req.params.id });
     // const {firstName, lastName, emailAddress}
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('ApplicantInfo'),

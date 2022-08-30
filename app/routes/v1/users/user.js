@@ -40,6 +40,6 @@ router.post(
 // router to fetch a user's info
 router.get('/userInfo', authenticate, getUserInfo);
 
-router.get('/applicant-info/:email', authenticate, getSingleUser);
+router.get('/applicant-info/:id', authenticate, getSingleUser);
 
 export default router;

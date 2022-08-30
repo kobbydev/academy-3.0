@@ -8,7 +8,8 @@ import {
   createAdminAssessment,
   getAllUserInfo,
   getAllAdminApplications,
-  updateAdminDetails
+  updateAdminDetails,
+  approveUser
 } from '../../../controllers/Admin';
 import {
   joiForLogin,
@@ -61,5 +62,8 @@ router.get('/admin/getApplicants', authenticate, adminAccess, getAllUserInfo);
 
 // Ruoter to update the details of an Admin
 router.patch('/admin/update-details', authenticate, adminAccess, updateAdminDetails);
+
+// Router to approve an application
+router.patch('/admin/approve-application', authenticate, approveUser);
 
 export default router;

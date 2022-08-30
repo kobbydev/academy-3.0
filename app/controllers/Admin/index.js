@@ -141,3 +141,19 @@ export const updateAdminDetails = async (req, res) => {
     return ErrorFactory.resolveError(e);
   }
 };
+
+export const approveUser = async (req, res) => {
+  try {
+    const { app_status } = req.body;
+    const approvedUser = await userApplication.findByIdAndUpdate(
+      { _id: req.params.id },
+      app_status
+    );
+    return res.status(200).send({
+      message: constants.RESOURCE_FETCH_SUCCESS('ApplicantInfo'),
+      data: approvedUser
+    });
+  } catch (error) {
+    return ErrorFactory.resolveError(error);
+  }
+};
