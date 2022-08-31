@@ -6683,3 +6683,11 @@
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:32:58 +0000] \"GET /api/v1/admin/info HTTP/1.1\" 200 561 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:32:58.819Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-30T13:36:33.097Z"}
 {"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [30/Aug/2022:13:36:37 +0000] \"GET /api/v1/admin/info HTTP/1.1\" 200 304 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-30T13:36:37.942Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-31T10:38:09.610Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [31/Aug/2022:10:38:14 +0000] \"POST /api/v1/user-login HTTP/1.1\" 200 447 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-31T10:38:14.101Z"}
+{"label":"TEMPORAL_PROJECT","level":"error","message":"ApiError - 404 - Oops, You have reached a dead end - /api/v1/user/assessment-questions - GET - ::1","timestamp":"2022-08-31T10:38:48.474Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [31/Aug/2022:10:38:48 +0000] \"GET /api/v1/user/assessment-questions HTTP/1.1\" 404 63 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-31T10:38:48.476Z"}
+{"label":"TEMPORAL_PROJECT","level":"error","message":"ApiError - 404 - Oops, You have reached a dead end - /api/v1/user/asessment-questions - GET - ::1","timestamp":"2022-08-31T10:39:09.255Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [31/Aug/2022:10:39:09 +0000] \"GET /api/v1/user/asessment-questions HTTP/1.1\" 404 63 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-31T10:39:09.257Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"TEMPORAL_PROJECT is running on PORT 8082","timestamp":"2022-08-31T10:39:50.380Z"}
+{"label":"TEMPORAL_PROJECT","level":"info","message":"::1 - - [31/Aug/2022:10:41:30 +0000] \"GET /api/v1/user/assessment-questions HTTP/1.1\" 200 384 \"-\" \"PostmanRuntime/7.29.2\"\n","timestamp":"2022-08-31T10:41:30.819Z"}

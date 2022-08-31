@@ -1,4 +1,5 @@
 import { User, userApplication } from '../../models/User';
+import { createAssessment } from '../../models/Admin';
 import { AuthHelper, ErrorFactory } from '../../utils/helpers';
 import { constants } from '../../utils';
 import cloudinary from '../../utils/cloudinary';
@@ -89,6 +90,19 @@ export const getSingleUser = async (req, res) => {
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('ApplicantInfo'),
       data: singleUser
+    });
+  } catch (error) {
+    return ErrorFactory.resolveError(error);
+  }
+};
+
+// get aseessment questions
+export const assessmentQuestions = async (req, res) => {
+  try {
+    const question = await createAssessment.find();
+    return res.status(200).send({
+      message: constants.RESOURCE_FETCH_SUCCESS('Assessment questions'),
+      data: question
     });
   } catch (error) {
     return ErrorFactory.resolveError(error);

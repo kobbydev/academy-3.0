@@ -6,7 +6,8 @@ import {
   userLogIn,
   createUserApplication,
   getUserInfo,
-  getSingleUser
+  getSingleUser,
+  assessmentQuestions
 } from '../../../controllers/User';
 import { checkForUser, applicationValidator } from '../../../middlewares/user';
 
@@ -40,6 +41,9 @@ router.post(
 // router to fetch a user's info
 router.get('/userInfo', authenticate, getUserInfo);
 
+// router to get applicant info
 router.get('/applicant-info/:id', authenticate, getSingleUser);
 
+// router to get assessment questions
+router.get('/user/assessment-questions', authenticate, assessmentQuestions);
 export default router;
