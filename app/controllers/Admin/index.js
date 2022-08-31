@@ -118,15 +118,10 @@ export const getAllAdminApplications = async (req, res) => {
 // To create Assessment
 export const createAdminAssessment = async (req, res) => {
   try {
-    const { assessmentFile } = req.files;
-    const assessmentFileResult = await cloudinary.uploader.upload(assessmentFile.tempFilePath);
     const { body } = req;
     const newAssessment = await createAssessment.create({
-      ...body,
-      assessmentFile: assessmentFileResult.url
+      ...body
     });
-    // eslint-disable-next-line no-console
-    console.log('I got here');
     return res.status(201).send({
       message: constants.RESOURCE_CREATE_SUCCESS('Assessment'),
       data: newAssessment
@@ -143,7 +138,6 @@ export const updateAdminDetails = async (req, res) => {
     const { profileImage } = req.files;
     const imageResult = await cloudinary.uploader.upload(profileImage.tempFilePath);
     const { firstName, lastName, phoneNumber, address, country } = req.body;
-    // console.log(firstName);
     const adminUpdate = await Admin.findById(_id);
     const newadmin = await adminUpdate.update({
       profileImage: imageResult.url,
@@ -167,7 +161,7 @@ export const approveUser = async (req, res) => {
     const { app_status } = req.body;
     const approvedUser = await userApplication.findByIdAndUpdate(
       { _id: req.params.id },
-      app_status
+      { app_status }
     );
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('ApplicantInfo'),

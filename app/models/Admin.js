@@ -39,12 +39,12 @@ export const adminApplication = model('adminApplication', adminApplicationsSchem
 
 // Schema for creating assessment by the admin
 const createAssessmentSchema = new Schema({
-  assessmentFile: { type: String },
-  questions: { type: String, require: true },
+  question: { type: String, require: true },
   optionA: { type: String, require: true },
   optionB: { type: String, require: true },
   optionC: { type: String, require: true },
-  optionD: { type: String, require: true }
+  optionD: { type: String, require: true },
+  correctAnswer: { type: String, required: true }
 });
 
 export const createAssessment = model('createAssessment', createAssessmentSchema);

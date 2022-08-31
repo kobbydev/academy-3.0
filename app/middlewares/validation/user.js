@@ -49,10 +49,10 @@ export const joiForAdminApplication = Joi.object({
 });
 
 export const joiForCreateAssesment = Joi.object({
-  assessmentFile: Joi.any(),
-  questions: Joi.string().required(),
+  question: Joi.string().required(),
   optionA: Joi.string().required(),
   optionB: Joi.string().required(),
   optionC: Joi.string().required(),
-  optionD: Joi.string().required()
+  optionD: Joi.string().required(),
+  correctAnswer: Joi.string().required()
 });

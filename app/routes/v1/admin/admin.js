@@ -68,6 +68,6 @@ router.get('/admin/getApplicants', authenticate, adminAccess, getAllUserInfo);
 router.patch('/admin/update-details', authenticate, adminAccess, updateAdminDetails);
 
 // Router to approve an application
-router.patch('/admin/approve-application', authenticate, approveUser);
+router.patch('/admin/approve-application/:id', authenticate, approveUser);
 
 export default router;
