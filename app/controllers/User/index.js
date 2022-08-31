@@ -56,7 +56,8 @@ export const createUserApplication = async (req, res) => {
       ...body,
       cv: cvResult.url,
       image: imageResult.url,
-      app_status: 'Pending'
+      app_status: 'Pending',
+      scores: '0'
     });
     await User.findByIdAndUpdate(_id, { is_applied: true });
     return res.status(201).send({
