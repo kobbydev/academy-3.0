@@ -36,8 +36,8 @@ export const joiForApplication = Joi.object({
   university: Joi.string().required(),
   courseOfStudy: Joi.string().required(),
   cgpa: Joi.number().max(4).min(1).required(),
-  image: Joi.any().required(),
-  cv: Joi.any().required()
+  image: Joi.any(),
+  cv: Joi.any()
 });
 
 export const joiForAdminApplication = Joi.object({
