@@ -57,7 +57,9 @@ export const createUserApplication = async (req, res) => {
       cv: cvResult.url,
       image: imageResult.url,
       app_status: 'Pending',
-      scores: '0'
+      scores: 0,
+      is_taken_test: false,
+      timer: ''
     });
     await User.findByIdAndUpdate(_id, { is_applied: true });
     return res.status(201).send({
@@ -106,6 +108,32 @@ export const assessmentQuestions = async (req, res) => {
       data: question
     });
   } catch (error) {
+    return ErrorFactory.resolveError(error);
+  }
+};
+
+// update user info
+export const updateUser = async (req, res) => {
+  try {
+    const { firstName, lastName, emailAddress, scores, is_taken_test, phoneNumber } = req.body;
+    const updatedUser = await userApplication.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        firstName,
+        lastName,
+        emailAddress,
+        scores,
+        is_taken_test,
+        phoneNumber
+      }
+    );
+    return res.status(200).send({
+      message: constants.RESOURCE_UPDATE_SUCCESS('User'),
+      data: updatedUser
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     return ErrorFactory.resolveError(error);
   }
 };

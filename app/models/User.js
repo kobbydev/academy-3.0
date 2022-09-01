@@ -32,7 +32,10 @@ const applicationSchema = new Schema(
     cgpa: { type: Number, require: true },
     image: { type: String, require: true },
     cv: { type: String, require: true },
-    app_status: { type: String }
+    app_status: { type: String },
+    scores: { type: Number },
+    is_taken_test: { type: Boolean },
+    timer: { type: String }
   },
   { timestamps: true }
 );

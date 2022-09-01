@@ -17,7 +17,8 @@ export const adminSignUp = async (req, res) => {
       salt,
       profileImage: profileResult.url,
       role: 'Admin',
-      is_admin: true
+      is_admin: true,
+      timer: ''
     });
     const { _id, firstName, lastName } = newAdmin;
     return res.status(201).send({
@@ -164,8 +165,24 @@ export const approveUser = async (req, res) => {
       { app_status }
     );
     return res.status(200).send({
-      message: constants.RESOURCE_FETCH_SUCCESS('ApplicantInfo'),
+      message: constants.RESOURCE_UPDATE_SUCCESS('ApplicantInfo'),
       data: approvedUser
+    });
+  } catch (error) {
+    return ErrorFactory.resolveError(error);
+  }
+};
+
+// update timer
+export const updateTimer = async (req, res) => {
+  try {
+    const { timer } = req.body;
+    const { _id } = req.data;
+    const update = await Admin.findByIdAndUpdate({ _id }, { timer });
+    const userUpdate = await userApplication.updateMany({}, { timer });
+    return res.status(200).send({
+      message: constants.RESOURCE_UPDATE_SUCCESS('ApplicantInfo'),
+      data: { update, userUpdate }
     });
   } catch (error) {
     return ErrorFactory.resolveError(error);

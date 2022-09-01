@@ -10,7 +10,8 @@ import {
   getAllAdminApplications,
   updateAdminDetails,
   approveUser,
-  getAdminInfo
+  getAdminInfo,
+  updateTimer
 } from '../../../controllers/Admin';
 import {
   joiForLogin,
@@ -69,5 +70,7 @@ router.patch('/admin/update-details', authenticate, adminAccess, updateAdminDeta
 
 // Router to approve an application
 router.patch('/admin/approve-application/:id', authenticate, approveUser);
+
+router.put('/admin/update-timer', authenticate, adminAccess, updateTimer);
 
 export default router;

@@ -7,7 +7,8 @@ import {
   createUserApplication,
   getUserInfo,
   getSingleUser,
-  assessmentQuestions
+  assessmentQuestions,
+  updateUser
 } from '../../../controllers/User';
 import { checkForUser, applicationValidator } from '../../../middlewares/user';
 
@@ -46,4 +47,7 @@ router.get('/applicant-info/:id', authenticate, getSingleUser);
 
 // router to get assessment questions
 router.get('/user/assessment-questions', authenticate, assessmentQuestions);
+
+// router to update user
+router.put('/user/update/:id', authenticate, updateUser);
 export default router;
