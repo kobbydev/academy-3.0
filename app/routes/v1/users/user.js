@@ -6,7 +6,6 @@ import {
   userLogIn,
   createUserApplication,
   getUserInfo,
-  getSingleUser,
   assessmentQuestions,
   updateUser
 } from '../../../controllers/User';
@@ -42,12 +41,10 @@ router.post(
 // router to fetch a user's info
 router.get('/userInfo', authenticate, getUserInfo);
 
-// router to get applicant info
-router.get('/applicant-info/:id', authenticate, getSingleUser);
-
 // router to get assessment questions
 router.get('/user/assessment-questions', authenticate, assessmentQuestions);
 
 // router to update user
 router.put('/user/update/:id', authenticate, updateUser);
+
 export default router;

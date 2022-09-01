@@ -9,6 +9,8 @@ import { signUpObj, applicationObj } from '../fixtures/user';
 chai.use(chaiHttp);
 // eslint-disable-next-line no-unused-vars
 let token;
+// eslint-disable-next-line no-unused-vars
+let userId;
 
 describe('User post requests', () => {
   before(async () => {
@@ -20,10 +22,11 @@ describe('User post requests', () => {
       .post('/api/v1/user-signup')
       .send(signUpObj)
       .end((err, res) => {
+        userId = res.body.data.user._id;
         expect(res.status).to.equal(201);
         done();
       });
-  }).timeout(12000);
+  });
   it('logs in a user', (done) => {
     chai
       .request(app)
@@ -58,7 +61,7 @@ describe('User post requests', () => {
         expect(res.status).to.equal(201);
         done();
       });
-  }).timeout(12000);
+  });
 });
 
 describe('User get requests', () => {
@@ -71,7 +74,7 @@ describe('User get requests', () => {
         expect(res.status).to.equal(200);
         done();
       });
-  }).timeout(12000);
+  });
   it('fetches assessment questions', (done) => {
     chai
       .request(app)
@@ -81,5 +84,43 @@ describe('User get requests', () => {
         expect(res.status).to.equal(200);
         done();
       });
-  }).timeout(12000);
+  });
+  it('fetches the info of an applicant', (done) => {
+    chai
+      .request(app)
+      .get(`/api/v1/applicant-info/${userId}`)
+      .set('token', token)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
+});
+
+describe('put requests', () => {
+  it('updates the details of a user', (done) => {
+    chai
+      .request(app)
+      .put(`/api/v1/user/update/${userId}`)
+      .set('token', token)
+      .send({ is_taken_test: true })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
+});
+
+describe('patch requests', () => {
+  it('updates the details of a user', (done) => {
+    chai
+      .request(app)
+      .patch(`/api/v1/admin/approve-application/${userId}`)
+      .set('token', token)
+      .send({ app_status: 'Approved' })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
 });

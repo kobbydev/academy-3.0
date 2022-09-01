@@ -11,8 +11,10 @@ import {
   updateAdminDetails,
   approveUser,
   getAdminInfo,
-  updateTimer
+  updateTimer,
+  updateAdminImage
 } from '../../../controllers/Admin';
+import { getSingleUser } from '../../../controllers/User';
 import {
   joiForLogin,
   joiForAdminApplication,
@@ -62,11 +64,17 @@ router.get('/admin-applications', authenticate, adminAccess, getAllAdminApplicat
 // Router to get admin info
 router.get('/admin/info', authenticate, adminAccess, getAdminInfo);
 
+// router to get applicant info
+router.get('/applicant-info/:id', authenticate, getSingleUser);
+
 // Fetches all the applicants for the admin
 router.get('/admin/getApplicants', authenticate, adminAccess, getAllUserInfo);
 
 // Ruoter to update the details of an Admin
 router.patch('/admin/update-details', authenticate, adminAccess, updateAdminDetails);
+
+// Ruoter to update the details of an Admin
+router.patch('/admin/update-image', authenticate, adminAccess, updateAdminImage);
 
 // Router to approve an application
 router.patch('/admin/approve-application/:id', authenticate, approveUser);

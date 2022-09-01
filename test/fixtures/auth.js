@@ -31,3 +31,19 @@ export const adminSignupObj = {
   country: 'Ghana',
   address: 'Home'
 };
+
+export const adminApplication = {
+  link: 'yrgwufiygoybgoqwuy',
+  dateOfApplication: '2022-12-12',
+  batchId: 'jgveauy',
+  instructions: 'gvxywetdgo8y'
+};
+
+export const adminAssessmentObj = {
+  question: 'jvfcuyfgvkbuhyj',
+  optionA: 'ggvbuij',
+  optionB: 'jghfcuytg',
+  optionC: 'gvhfgv',
+  optionD: 'hghfc',
+  correctAnswer: 'hgfc'
+};

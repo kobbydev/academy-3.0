@@ -136,17 +136,32 @@ export const createAdminAssessment = async (req, res) => {
 export const updateAdminDetails = async (req, res) => {
   try {
     const { _id } = req.data;
-    const { profileImage } = req.files;
-    const imageResult = await cloudinary.uploader.upload(profileImage.tempFilePath);
     const { firstName, lastName, phoneNumber, address, country } = req.body;
     const adminUpdate = await Admin.findById(_id);
     const newadmin = await adminUpdate.update({
-      profileImage: imageResult.url,
       firstName,
       lastName,
       phoneNumber,
       address,
       country
+    });
+    return res.status(201).send({
+      message: constants.RESOURCE_UPDATE_SUCCESS('Admin'),
+      data: newadmin
+    });
+  } catch (e) {
+    return ErrorFactory.resolveError(e);
+  }
+};
+
+export const updateAdminImage = async (req, res) => {
+  try {
+    const { _id } = req.data;
+    const { profileImage } = req.files;
+    const imageResult = await cloudinary.uploader.upload(profileImage.tempFilePath);
+    const adminUpdate = await Admin.findById(_id);
+    const newadmin = await adminUpdate.update({
+      profileImage: imageResult.url
     });
     return res.status(201).send({
       message: constants.RESOURCE_UPDATE_SUCCESS('Admin'),

@@ -132,8 +132,6 @@ export const updateUser = async (req, res) => {
       data: updatedUser
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
     return ErrorFactory.resolveError(error);
   }
 };
