@@ -8,7 +8,7 @@ import config from './config/env';
 import Logger from './config/logger';
 import { constants } from './app/utils';
 
-const app = express();
+export const app = express();
 global.logger = Logger.createLogger({ label: 'TEMPORAL_PROJECT' });
 
 appConfig(app);
