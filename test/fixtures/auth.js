@@ -8,8 +8,8 @@ export const fakeLoginObj = {
 };
 
 export const invalidLoginObj = {
-  email: 'admin01@iverified.com',
-  password: 'admin0'
+  email: 'admin55@iverified.com',
+  password: 'admin0123456'
 };
 
 export const rightLoginObj = {
