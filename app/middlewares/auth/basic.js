@@ -102,12 +102,12 @@ class AuthMiddleware {
       req.user = await User.findOne({ emailAddress: req.body.emailAddress });
       return req.user ? next() : errorResponse(req, res, genericErrors.inValidLogin);
     } catch (e) {
-      e.status = RESOURCE_EXIST_VERIFICATION_FAIL('ADMIN');
+      e.status = RESOURCE_EXIST_VERIFICATION_FAIL('USER');
       moduleErrLogMessager(e);
       errorResponse(
         req,
         res,
-        new ApiError({ message: RESOURCE_EXIST_VERIFICATION_FAIL_MSG('Admin') })
+        new ApiError({ message: RESOURCE_EXIST_VERIFICATION_FAIL_MSG('User') })
       );
     }
   }

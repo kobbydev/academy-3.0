@@ -8,6 +8,13 @@ export const signUpObj = {
   password: '012345678'
 };
 
+export const fakeSignUpObj = {
+  lastName: 'Ghansah',
+  emailAddress: 'melissa@gmail.com',
+  phoneNumber: '0555555555',
+  password: '012345678'
+};
+
 export const applicationObj = {
   firstName: 'Melissa',
   lastName: 'Ghansah',
