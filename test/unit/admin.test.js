@@ -3,9 +3,15 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import fs from 'fs';
+import sinon from 'sinon';
 import { app } from '../../index';
 import { Admin } from '../../app/models/Admin';
-import { adminSignupObj, adminApplication, adminAssessmentObj, invalidLoginObj } from '../fixtures/auth';
+import {
+  adminSignupObj,
+  adminApplication,
+  adminAssessmentObj,
+  invalidLoginObj
+} from '../fixtures/auth';
 
 chai.use(chaiHttp);
 let token;
@@ -31,6 +37,25 @@ describe('Admin post requests', () => {
       .end((err, res) => {
         adminId = res.body.data.admin._id;
         expect(res.status).to.equal(201);
+        done();
+      });
+  });
+  it('creates a new admin again to check error ', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin/signup')
+      .send({
+        firstName: adminSignupObj.firstName,
+        lastName: adminSignupObj.lastName,
+        emailAddress: adminSignupObj.emailAddress,
+        dateOfBirth: adminSignupObj.dateOfBirth,
+        address: adminSignupObj.address,
+        courseOfStudy: adminSignupObj.courseOfStudy,
+        image: fs.readFileSync(`${__dirname}/enyata.jpg`)
+      })
+      .end((err, res) => {
+        // adminId = res.body.data.admin._id;
+        expect(res.status).to.equal(500);
         done();
       });
   });
@@ -83,7 +108,8 @@ describe('Admin post requests', () => {
     chai
       .request(app)
       .post('/api/v1/admin-create-application')
-      .set('token', token)
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .set('content-type', 'multipart/form-data')
       .field('link', adminApplication.link)
       .field('dateOfApplication', adminApplication.dateOfApplication)
@@ -106,6 +132,17 @@ describe('Admin post requests', () => {
         done();
       });
   });
+  it('checks token required error', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin/create-assessment')
+      // .set('token', token)
+      .send(adminAssessmentObj)
+      .end((err, res) => {
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
 });
 
 describe('Admin get routes', () => {
@@ -113,7 +150,8 @@ describe('Admin get routes', () => {
     chai
       .request(app)
       .get('/api/v1/admin-applications')
-      .set('token', token)
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .end((err, res) => {
         expect(res.status).to.equal(200);
         done();
@@ -123,7 +161,7 @@ describe('Admin get routes', () => {
     chai
       .request(app)
       .get('/api/v1/admin/info')
-      .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .end((err, res) => {
         expect(res.status).to.equal(200);
         done();
@@ -133,7 +171,7 @@ describe('Admin get routes', () => {
     chai
       .request(app)
       .get('/api/v1/admin/getApplicants')
-      .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .end((err, res) => {
         expect(res.status).to.equal(200);
         done();
@@ -146,7 +184,8 @@ describe('Admin patch routes', () => {
     chai
       .request(app)
       .patch('/api/v1/admin/update-details')
-      .set('token', token)
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .send({ firstName: 'William' })
       .end((err, res) => {
         expect(res.status).to.equal(201);
@@ -157,7 +196,8 @@ describe('Admin patch routes', () => {
     chai
       .request(app)
       .patch('/api/v1/admin/update-image')
-      .set('token', token)
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .set('content-type', 'multipart/form-data')
       .attach('profileImage', fs.readFileSync(`${__dirname}/enyata.jpg`), 'unit/enyata.jpg')
       .end((err, res) => {
@@ -165,4 +205,39 @@ describe('Admin patch routes', () => {
         done();
       });
   }).timeout(22000);
+});
+
+describe('put requests', () => {
+  it('updates the timer', (done) => {
+    chai
+      .request(app)
+      .put('/api/v1/admin/update-timer')
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
+      .send({ timer: 688 })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
+});
+
+describe('62502383', () => {
+  before(async () => {
+    await Admin.deleteMany({});
+  });
+  it('log', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin-login')
+      .send({
+        emailAddress: adminSignupObj.emailAddress,
+        password: adminSignupObj.password
+      })
+      .end((err, res) => {
+        // token = res.body.data.admin.token;
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
 });

@@ -45,7 +45,8 @@ describe('User post requests', () => {
     chai
       .request(app)
       .post('/api/v1/application')
-      .set('token', token)
+      // .set('token', token)
+      .set({ Authorization: `Bearer ${token}` })
       .set('content-type', 'multipart/form-data')
       .field('firstName', applicationObj.firstName)
       .field('lastName', applicationObj.lastName)
@@ -59,6 +60,28 @@ describe('User post requests', () => {
       .attach('cv', fs.readFileSync(`${__dirname}/Enyata.pdf`), 'unit/Enyata.pdf')
       .end((err, res) => {
         expect(res.status).to.equal(201);
+        done();
+      });
+  });
+  it('creates a user application and check for error ', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/application')
+      .set('token', token)
+      // .set('content-type', 'multipart/form-data')
+      .send({
+        firstName: 'Torgbui',
+        lastName: applicationObj.lastName,
+        emailAddress: applicationObj.emailAddress,
+        dateOfBirth: applicationObj.dateOfBirth,
+        address: applicationObj.address,
+        university: applicationObj.university,
+        courseOfStudy: applicationObj.courseOfStudy,
+        cgpa: applicationObj.cgpa,
+        image: fs.readFileSync(`${__dirname}/enyata.jpg`)
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(500);
         done();
       });
   });
