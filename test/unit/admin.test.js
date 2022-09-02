@@ -5,7 +5,7 @@ import chaiHttp from 'chai-http';
 import fs from 'fs';
 import { app } from '../../index';
 import { Admin } from '../../app/models/Admin';
-import { adminSignupObj, adminApplication, adminAssessmentObj } from '../fixtures/auth';
+import { adminSignupObj, adminApplication, adminAssessmentObj, invalidLoginObj } from '../fixtures/auth';
 
 chai.use(chaiHttp);
 let token;
@@ -63,6 +63,19 @@ describe('Admin post requests', () => {
       .end((err, res) => {
         token = res.body.data.admin.token;
         expect(res.status).to.equal(200);
+        done();
+      });
+  });
+  it('checks wrong admin login details', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin-login')
+      .send({
+        emailAddress: invalidLoginObj.emailAddress,
+        password: invalidLoginObj.password
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
         done();
       });
   });
