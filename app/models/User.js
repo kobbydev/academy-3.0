@@ -35,7 +35,7 @@ const applicationSchema = new Schema(
     app_status: { type: String },
     scores: { type: Number },
     is_taken_test: { type: Boolean },
-    timer: { type: String }
+    timer: { type: Number }
   },
   { timestamps: true }
 );

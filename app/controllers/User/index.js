@@ -59,7 +59,7 @@ export const createUserApplication = async (req, res) => {
       app_status: 'Pending',
       scores: 0,
       is_taken_test: false,
-      timer: ''
+      timer: 0
     });
     await User.findByIdAndUpdate(_id, { is_applied: true });
     return res.status(201).send({
@@ -75,10 +75,10 @@ export const createUserApplication = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userInfo = await userApplication.findOne({ emailAddress: req.data.emailAddress });
-    const { firstName, lastName, emailAddress, image, createdAt, app_status } = userInfo;
+    // const { firstName, lastName, emailAddress, image, createdAt, app_status } = userInfo;
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('UserInfo'),
-      data: { user: { firstName, lastName, emailAddress, image, createdAt, app_status } }
+      data: { user: userInfo }
     });
   } catch (e) {
     return ErrorFactory.resolveError(e);

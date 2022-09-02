@@ -18,7 +18,7 @@ export const adminSignUp = async (req, res) => {
       profileImage: profileResult.url,
       role: 'Admin',
       is_admin: true,
-      timer: ''
+      timer: 0
     });
     const { _id, firstName, lastName } = newAdmin;
     return res.status(201).send({
@@ -58,12 +58,12 @@ export const getAdminInfo = async (req, res) => {
   try {
     const { _id } = req.data;
     const adminInfo = await Admin.findById(_id);
-    const { firstName, lastName, emailAddress, profileImage, country, address, phoneNumber } =
-      adminInfo;
+    // const { firstName, lastName, emailAddress, profileImage, country, address, phoneNumber } =
+    //   adminInfo;
     return res.status(200).send({
       message: constants.RESOURCE_FETCH_SUCCESS('Admin Info'),
       data: {
-        admin: { firstName, lastName, emailAddress, profileImage, country, address, phoneNumber }
+        admin: adminInfo
       }
     });
   } catch (e) {

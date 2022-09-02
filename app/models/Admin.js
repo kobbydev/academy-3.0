@@ -15,7 +15,8 @@ const adminSchema = new Schema(
     role: { type: String },
     is_admin: { type: Boolean },
     country: { type: String, require: true },
-    address: { type: String, require: true }
+    address: { type: String, require: true },
+    timer: { type: Number }
   },
   { timestamps: true }
 );
@@ -38,13 +39,16 @@ export const adminApplication = model('adminApplication', adminApplicationsSchem
 // export { adminApplication as default };
 
 // Schema for creating assessment by the admin
-const createAssessmentSchema = new Schema({
-  question: { type: String, require: true },
-  optionA: { type: String, require: true },
-  optionB: { type: String, require: true },
-  optionC: { type: String, require: true },
-  optionD: { type: String, require: true },
-  correctAnswer: { type: String, required: true }
-});
+const createAssessmentSchema = new Schema(
+  {
+    question: { type: String, require: true },
+    optionA: { type: String, require: true },
+    optionB: { type: String, require: true },
+    optionC: { type: String, require: true },
+    optionD: { type: String, require: true },
+    correctAnswer: { type: String, required: true }
+  },
+  { timestamps: true }
+);
 
 export const createAssessment = model('createAssessment', createAssessmentSchema);
