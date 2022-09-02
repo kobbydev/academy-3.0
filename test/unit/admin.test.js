@@ -3,7 +3,6 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import fs from 'fs';
-import sinon from 'sinon';
 import { app } from '../../index';
 import { Admin } from '../../app/models/Admin';
 import {
@@ -40,25 +39,6 @@ describe('Admin post requests', () => {
         done();
       });
   });
-  it('creates a new admin again to check error ', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/admin/signup')
-      .send({
-        firstName: adminSignupObj.firstName,
-        lastName: adminSignupObj.lastName,
-        emailAddress: adminSignupObj.emailAddress,
-        dateOfBirth: adminSignupObj.dateOfBirth,
-        address: adminSignupObj.address,
-        courseOfStudy: adminSignupObj.courseOfStudy,
-        image: fs.readFileSync(`${__dirname}/enyata.jpg`)
-      })
-      .end((err, res) => {
-        // adminId = res.body.data.admin._id;
-        expect(res.status).to.equal(500);
-        done();
-      });
-  });
   it('checks if admin already has an account ', (done) => {
     chai
       .request(app)
@@ -91,16 +71,29 @@ describe('Admin post requests', () => {
         done();
       });
   });
-  it('checks wrong admin login details', (done) => {
+  it('checks wrong admin login email', (done) => {
     chai
       .request(app)
       .post('/api/v1/admin-login')
       .send({
-        emailAddress: invalidLoginObj.emailAddress,
+        emailAddress: invalidLoginObj.email,
+        password: adminSignupObj.password
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
+  it('checks wrong admin login password', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin-login')
+      .send({
+        emailAddress: adminSignupObj.emailAddress,
         password: invalidLoginObj.password
       })
       .end((err, res) => {
-        expect(res.status).to.equal(400);
+        expect(res.status).to.equal(401);
         done();
       });
   });
@@ -121,6 +114,21 @@ describe('Admin post requests', () => {
         done();
       });
   });
+  it('creates a new admin application without token', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/admin-create-application')
+      .set('content-type', 'multipart/form-data')
+      .field('link', adminApplication.link)
+      .field('dateOfApplication', adminApplication.dateOfApplication)
+      .field('batchId', adminApplication.batchId)
+      .field('instructions', adminApplication.instructions)
+      .attach('applicationFile', fs.readFileSync(`${__dirname}/Enyata.pdf`), 'unit/Enyata.pdf')
+      .end((err, res) => {
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
   it('creates a new admin assessment', (done) => {
     chai
       .request(app)
@@ -129,17 +137,6 @@ describe('Admin post requests', () => {
       .send(adminAssessmentObj)
       .end((err, res) => {
         expect(res.status).to.equal(201);
-        done();
-      });
-  });
-  it('checks token required error', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/admin/create-assessment')
-      // .set('token', token)
-      .send(adminAssessmentObj)
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
         done();
       });
   });
@@ -222,22 +219,22 @@ describe('put requests', () => {
   });
 });
 
-describe('62502383', () => {
-  before(async () => {
-    await Admin.deleteMany({});
-  });
-  it('log', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/admin-login')
-      .send({
-        emailAddress: adminSignupObj.emailAddress,
-        password: adminSignupObj.password
-      })
-      .end((err, res) => {
-        // token = res.body.data.admin.token;
-        expect(res.status).to.equal(401);
-        done();
-      });
-  });
-});
+// describe('62502383', () => {
+//   before(async () => {
+//     await Admin.deleteMany({});
+//   });
+//   it('log', (done) => {
+//     chai
+//       .request(app)
+//       .post('/api/v1/admin-login')
+//       .send({
+//         emailAddress: adminSignupObj.emailAddress,
+//         password: adminSignupObj.password
+//       })
+//       .end((err, res) => {
+//         // token = res.body.data.admin.token;
+//         expect(res.status).to.equal(401);
+//         done();
+//       });
+//   });
+// });
