@@ -136,11 +136,10 @@ export const createAdminAssessment = async (req, res) => {
 export const updateAdminDetails = async (req, res) => {
   try {
     const { _id } = req.data;
-    const { firstName, lastName, phoneNumber, address, country } = req.body;
+    const { fullName, phoneNumber, address, country } = req.body;
     const adminUpdate = await Admin.findById(_id);
     const newadmin = await adminUpdate.update({
-      firstName,
-      lastName,
+      fullName,
       phoneNumber,
       address,
       country

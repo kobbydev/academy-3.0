@@ -12,8 +12,7 @@ export const joiForUser = Joi.object({
 
 export const joiForAdminSignup = Joi.object({
   profileImage: Joi.any(),
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
+  fullName: Joi.string().required(),
   emailAddress: Joi.string().email().required(),
   phoneNumber: Joi.number().required(),
   password: Joi.string().min(8).required(),

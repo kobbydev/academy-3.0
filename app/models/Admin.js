@@ -6,8 +6,7 @@ const { Schema, model } = mongoose;
 const adminSchema = new Schema(
   {
     profileImage: { type: String },
-    firstName: { type: String, require: true },
-    lastName: { type: String, require: true },
+    fullName: { type: String, require: true },
     emailAddress: { type: String, require: true },
     phoneNumber: { type: String, require: true },
     password: { type: String, require: true },
